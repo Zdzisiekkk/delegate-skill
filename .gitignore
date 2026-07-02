@@ -1,0 +1,35 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies (if you add any)
+node_modules/
+__pycache__/
+*.pyc
+
+# Temporary files
+*.tmp
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.lproj
+._*
+.Spotlight-V100
+.Trashes
+
+# Testing
+coverage/
+.nyc_output/
+
+# Build artifacts (if you add build scripts)
+dist/
+build/
+*.egg-info/
