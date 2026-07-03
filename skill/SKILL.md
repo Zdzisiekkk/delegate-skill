@@ -1,6 +1,6 @@
 ---
 name: delegate
-description: Dla bardzo złożonych, wieloetapowych, wysokiego ryzyka zadań (dowolnego typu — kod, biznes, treści, research). Fable 5 tworzy szczegółowy plan, użytkownik akceptuje podsumowanie, tańszy model wykonuje. Oszczędzaj koszty bez utraty jakości. Użyj proaktywnie gdy zadanie wymaga głębokich strategicznych decyzji i wieloetapowego planowania.
+description: Dla bardzo złożonych, wieloetapowych, wysokiego ryzyka zadań (dowolnego typu — kod, biznes, treści, research). Najpierw dogłębny wywiad aby zrozumieć pełną strukturę projektu i wymagania. Fable 5 tworzy szczegółowy plan, użytkownik akceptuje podsumowanie, tańszy model wykonuje. Oszczędzaj koszty bez utraty jakości. Użyj proaktywnie gdy zadanie wymaga głębokich strategicznych decyzji i wieloetapowego planowania.
 disable-model-invocation: false
 user-invocable: true
 allowed-tools: Agent, AskUserQuestion
@@ -27,7 +27,25 @@ Skill ma sens gdy:
 
 **Jeśli TAK** — idź do kroku 2.
 
-### 2. Planowanie przez Fable 5
+### 2. Dogłębny wywiad z użytkownikiem
+
+Zanim Fable 5 będzie planować, musisz zrozumieć pełną strukturę projektu i wymagania. Inaczej ryzykujesz że Fable będzie planować na podstawie niejasnego lub niekompletnego zadania.
+
+Użyj AskUserQuestion aby zadać pytania aż dowiesz się:
+- **Cel biznesowy**: co dokładnie ma być osiągnięte i dlaczego to ważne
+- **Struktura projektu**: architektura, technologie, istniejące komponenty, data model
+- **Wymagania funkcjonalne**: co dokładnie ma robić (nie "zrób UI", ale "zrób formularz z validacją dla X")
+- **Wymagania niefunkcjonalne**: performance, security, accessibility, deadline, budget constraints
+- **Kontekst**: kto będzie to używać, jakie są use cases, jakie są edge cases
+- **Ograniczenia**: co NIE można zmieniać, jakie są zależności, co może pójść źle
+
+**Nie przechodzisz do kroku 3 dopóki nie będziesz pewny że rozumiesz pełną strukturę.**
+
+Jeśli użytkownik daje odpowiedzi zbyt ogólne lub niejasne — **pytaj dalej**. To jest filter przed Fable — słaba entrada = słaby plan = marnowanie pieniędzy.
+
+Kiedy jesteś pewny (lub użytkownik mówi "gotowe") — zbierz wszystko w podsumowanie i idź do kroku 3.
+
+### 3. Planowanie przez Fable 5
 
 Użyj narzędzia Agent z poniższymi parametrami:
 
@@ -70,7 +88,7 @@ Stwórz szczegółowy plan z:
 
 Po powrocie od Fable — masz teraz szczegółowy plan w zmiennej (wynik call'u Agent).
 
-### 3. Podsumowanie i akceptacja
+### 4. Podsumowanie i akceptacja
 
 Przeczytaj plan od Fable. Teraz musisz go **skrócić do 5-10 linijek** dla użytkownika.
 
@@ -116,13 +134,13 @@ Teraz użyj narzędzia AskUserQuestion:
 }
 ```
 
-### 4. Obsługa odpowiedzi użytkownika
+### 5. Obsługa odpowiedzi użytkownika
 
-- **Tak / Wykonaj {model}** → idź do kroku 5
-- **Popraw plan** → użyj AskUserQuestion żeby zbiorać uwagi użytkownika, potem wyślij do Fable'a prompt z uwagami i wróć do kroku 2
+- **Tak / Wykonaj {model}** → idź do kroku 6
+- **Popraw plan** → użyj AskUserQuestion żeby zbiorać uwagi użytkownika, potem wyślij do Fable'a prompt z uwagami i wróć do kroku 3
 - **Anuluj** → powiedz "OK, anulujemy" i koniec
 
-### 5. Wykonanie
+### 6. Wykonanie
 
 Użyj narzędzia Agent:
 
@@ -153,7 +171,7 @@ Wykonaj dokładnie ten plan, krok po kroku.
 
 Po powrocie — masz rezultat wykonania.
 
-### 6. Raport końcowy
+### 7. Raport końcowy
 
 Krótko podsumuj co zostało zrobione:
 - Jakie były główne kroki
