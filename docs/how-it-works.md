@@ -13,10 +13,11 @@ When tackling complex tasks, you need a powerful model like Fable 5:
 
 ## The Solution
 
-1. **Fable 5 plans** (expensive but necessary) — creates detailed, step-by-step plan
-2. **User reviews** — brief summary, accepts/rejects/modifies
-3. **Cheaper model executes** (Sonnet 5 or Opus 4.8) — follows plan precisely
-4. **You get results** — same quality, 30-50% lower cost
+1. **Deep interview** — Claude asks questions to understand full project structure and requirements
+2. **Fable 5 plans** (expensive but necessary) — creates detailed, step-by-step plan based on complete context
+3. **User reviews** — brief summary, accepts/rejects/modifies
+4. **Cheaper model executes** (Sonnet 5 or Opus 4.8) — follows plan precisely
+5. **You get results** — same quality, 30-50% lower cost, no wasted budget on vague prompts
 
 ---
 
@@ -41,7 +42,29 @@ When tackling complex tasks, you need a powerful model like Fable 5:
 
 ---
 
-### Phase 2: Planning with Fable 5 (2-5 minutes)
+### Phase 2: Deep Interview (2-5 minutes)
+
+**What happens:** Claude conducts a structured interview to fully understand the project before expensive Fable planning.
+
+**Claude will ask about:**
+- 🏗️ **Project structure** — architecture, technologies, existing components, data model
+- 🎯 **Business goal** — what exactly needs to be achieved and why
+- ✅ **Functional requirements** — specific behaviors (be concrete: "form with email validation for signup" not "make a form")
+- ⚙️ **Non-functional requirements** — performance targets, security constraints, accessibility needs, deadline, budget
+- 👥 **Context** — who will use this, what are realistic use cases, what are edge cases
+- 🚫 **Constraints** — what absolutely cannot change, what are dependencies, failure modes
+
+**Why this matters:** Filters out vague or incomplete prompts before they reach Fable 5. No garbage in = no wasted budget on bad plans.
+
+**What you do:** Answer questions honestly and specifically. If asked "what's the scope?"—don't say "make a dashboard", say "render real-time metrics from PostgreSQL for 50K users with <500ms load time".
+
+**If requirements are unclear:** Claude will keep asking until they're not.
+
+**Output:** Complete, structured understanding of what needs to be done.
+
+---
+
+### Phase 3: Planning with Fable 5 (2-5 minutes)
 
 **What happens:** Fable 5 analyzes the task deeply and creates a detailed execution plan.
 
@@ -70,7 +93,7 @@ When tackling complex tasks, you need a powerful model like Fable 5:
 
 ---
 
-### Phase 3: Review & Accept (1-2 minutes)
+### Phase 4: Review & Accept (1-2 minutes)
 
 **What happens:** You see a brief summary and decide whether to proceed.
 
@@ -88,7 +111,7 @@ When tackling complex tasks, you need a powerful model like Fable 5:
 
 ---
 
-### Phase 4: Execution (5-30 minutes depending on task)
+### Phase 5: Execution (5-30 minutes depending on task)
 
 **What happens:** Selected model (Sonnet 5 or Opus 4.8) receives the full detailed plan and executes it step-by-step.
 
@@ -103,7 +126,7 @@ When tackling complex tasks, you need a powerful model like Fable 5:
 
 ---
 
-### Phase 5: Report (< 1 min)
+### Phase 6: Report (< 1 min)
 
 **What you get:**
 - Brief summary of what was accomplished
@@ -186,7 +209,7 @@ In these cases, just use Claude directly or a simpler tool.
 
 ### Changing Model Routing Logic
 
-Edit `skill/SKILL.md` step 2. Fable's prompt includes:
+Edit `skill/SKILL.md` step 3 (Planning phase). Fable's prompt includes:
 
 ```
 6. **Rekomendacja modelu**:
