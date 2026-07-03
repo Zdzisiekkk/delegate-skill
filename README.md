@@ -8,12 +8,19 @@ A powerful Claude Code skill that optimizes complex task execution through intel
 
 ## Features
 
+🎤 **Deep Interview Before Planning**
+- Claude conducts thorough discovery to understand full project structure and requirements
+- Filters out vague/incomplete prompts before expensive Fable planning
+- Prevents budget waste on low-quality task descriptions
+- Results in higher-quality plans from Fable 5
+
 ✨ **Smart Orchestration**
-- Fable 5 creates detailed, step-by-step plans
+- Fable 5 creates detailed, step-by-step plans based on complete context
 - User reviews concise summary before execution
 - Recommended model selected automatically based on task type
 
 💰 **Cost Optimization**
+- Deep interview ensures only well-defined tasks reach Fable planning
 - Fable 5 for strategic planning only
 - Sonnet 5 for mechanical, well-defined tasks
 - Opus 4.8 for nuanced, ambiguous, creative decisions
@@ -60,11 +67,12 @@ See [Installation Guide](./docs/installation.md) for detailed setup.
 
 ### What Happens
 
-1. **Fable 5 plans** — creates detailed, step-by-step execution plan
-2. **You review** — concise summary with key steps + recommended model
-3. **Choose** — accept plan, switch model, request changes, or cancel
-4. **Model executes** — Sonnet 5 or Opus 4.8 runs the plan exactly
-5. **Done** — brief report of what was accomplished
+1. **Deep interview** — Claude asks about project structure, requirements, and constraints until fully understood
+2. **Fable 5 plans** — creates detailed, step-by-step execution plan based on clear requirements
+3. **You review** — concise summary with key steps + recommended model
+4. **Choose** — accept plan, switch model, request changes, or cancel
+5. **Model executes** — Sonnet 5 or Opus 4.8 runs the plan exactly
+6. **Done** — brief report of what was accomplished
 
 ### Automatic Mode
 
@@ -100,9 +108,22 @@ Claude will proactively suggest `/delegate` when detecting:
 ### Step 1: Qualification
 Ensures the task is actually complex enough to warrant the overhead (typically 2-3 min planning time).
 
-### Step 2: Planning with Fable 5
-Fable analyzes:
-- Task scope and dependencies
+### Step 2: Deep Interview
+**Before expensive Fable planning, Claude conducts a thorough interview to prevent wasted budget.**
+
+Claude asks questions until fully understanding:
+- **Project structure** — architecture, technologies, existing components, data model
+- **Business goal** — what exactly needs to be achieved and why
+- **Functional requirements** — specific behaviors (not vague: "form with validation for X" not "make UI")
+- **Non-functional requirements** — performance, security, accessibility, deadline, budget constraints
+- **Context** — who uses this, what are use cases and edge cases
+- **Constraints** — what cannot change, dependencies, failure modes
+
+This filters out vague/incomplete prompts before they reach Fable. **No garbage in → no wasted budget.**
+
+### Step 3: Planning with Fable 5
+Fable analyzes armed with complete context:
+- Task scope and dependencies (now clearly defined)
 - Files/data that need examination
 - Edge cases and branching logic
 - Success criteria
@@ -111,7 +132,7 @@ Fable analyzes:
 
 Result: Detailed, concrete, unambiguous plan ready for execution.
 
-### Step 3: Review & Accept
+### Step 4: Review & Accept
 User sees:
 - **Objective** (1 sentence)
 - **Main steps** (3-4 bullet points)
@@ -120,10 +141,10 @@ User sees:
 
 User chooses: Execute | Swap model | Revise plan | Cancel
 
-### Step 4: Execution
+### Step 5: Execution
 Recommended model receives **full, detailed plan** from Fable and executes step-by-step. Reports any deviations from plan assumptions.
 
-### Step 5: Report
+### Step 6: Report
 Brief summary of what was accomplished. No unnecessary plan repetition.
 
 ---
